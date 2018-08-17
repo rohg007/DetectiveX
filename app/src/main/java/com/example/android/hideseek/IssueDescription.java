@@ -18,7 +18,7 @@ public class IssueDescription extends AppCompatActivity {
 
     private TextView NameTextView, ContactTextView, DescriptionTextView, EmailTextView;
     DatabaseReference databaseReference;
-    private String number;
+    private String number,name,email,description,objectType,lostFound;
 
 
     @Override
@@ -39,10 +39,12 @@ public class IssueDescription extends AppCompatActivity {
         Details details = (Details) intent.getExtras().get("DETAILS");
 
         if(details != null) {
-            String name = details.getmName();
+            name = details.getmName();
             number = details.getmContactNumber();
-            String email = details.getmEmail();
-            String description = details.getmDescription();
+            email = details.getmEmail();
+            description = details.getmDescription();
+            objectType = details.getmObjectType();
+            lostFound = details.getLostFound();
 
             NameTextView.setText(name);
             ContactTextView.setText(number);
@@ -60,12 +62,12 @@ public class IssueDescription extends AppCompatActivity {
         ContactViaEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                createMailOnClick();
             }
         });
     }
     /*
-    Opens the dialer activity when the Create
+    Opens the dialer activity when the contactViaPhone Button is clicked
      */
     private void openDialerActivity(String phoneNumber){
         Intent intent = new Intent(Intent.ACTION_DIAL);
@@ -75,5 +77,19 @@ public class IssueDescription extends AppCompatActivity {
         }
 
     }
-    //to commit
+    /*
+    Opens Mail Activity when contactViaEmail Button is clicked
+    */
+    private void createMailOnClick(){
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setType("*/*");
+        intent.setData(Uri.parse("mailto:"+email));
+        String body = "Regards,\n"+name+"\n"+number;
+        intent.putExtra(Intent.EXTRA_TEXT,body);
+        intent.putExtra(Intent.EXTRA_SUBJECT,"Regarding "+lostFound+" "+objectType);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
+
 }
