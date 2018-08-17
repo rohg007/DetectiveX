@@ -7,18 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class IssueDescription extends AppCompatActivity {
 
-    private TextView NameTextView, ContactTextView, DescriptionTextView, EmailTextView;
+
     DatabaseReference databaseReference;
-    private String number,name,email,description,objectType,lostFound;
+    private String number,name,email,objectType,lostFound;
 
 
     @Override
@@ -28,10 +24,10 @@ public class IssueDescription extends AppCompatActivity {
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
-        NameTextView = findViewById(R.id.description_name_text_view);
-        ContactTextView = findViewById(R.id.description_number_text_view);
-        DescriptionTextView = findViewById(R.id.description_description_text_view);
-        EmailTextView = findViewById(R.id.description_email_text_view);
+        TextView NameTextView = findViewById(R.id.description_name_text_view);
+        TextView ContactTextView = findViewById(R.id.description_number_text_view);
+        TextView DescriptionTextView = findViewById(R.id.description_description_text_view);
+        TextView EmailTextView = findViewById(R.id.description_email_text_view);
         Button ContactViaPhone = findViewById(R.id.contact_via_phone_button);
         Button ContactViaEmail = findViewById(R.id.contact_via_email_button);
 
@@ -42,7 +38,7 @@ public class IssueDescription extends AppCompatActivity {
             name = details.getmName();
             number = details.getmContactNumber();
             email = details.getmEmail();
-            description = details.getmDescription();
+            String description = details.getmDescription();
             objectType = details.getmObjectType();
             lostFound = details.getLostFound();
 

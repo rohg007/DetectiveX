@@ -148,18 +148,19 @@ public class AddForm extends AppCompatActivity {
      */
     public void orderMail ()
     {
-        Details details = new Details();
         String body = "";
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setType("*/*");
         intent.setData(Uri.parse("mailto:"));
         if(RadioButtonStatus().equals("Lost")) {
-            body = "Sir,\n Please forward this to all UG & PG Groups.\n\nI've lost my " + details.getmObjectType() + ". It is a" + details.getmDescription() + "\n\n Anyone who finds it may contact the undersigned\n\n" + details.getmName() + "\n" + details.getmContactNumber();
+            body = "Sir,\n Please forward this to all UG & PG Groups.\n\nI've lost my " + ObjectTypeEditText.getText().toString().trim() + ". It is a " + DescriptionEditText.getText().toString().trim() + "\n\n Anyone who finds it may contact the undersigned\n\n" + NameEditText.getText().toString().trim()+"\n"+ContactNumberEditText.getText().toString().trim();
         }
         else if(RadioButtonStatus().equals("Found")){
-            body = "Sir,\n Please forward this to all UG & PG Groups.\n\nI've Found a " + details.getmObjectType() + ". It is a" + details.getmDescription() + "\n\n To collect it you may contact the undersigned\n\n" + details.getmName() + "\n" + details.getmContactNumber();
+            body = "Sir,\n Please forward this to all UG & PG Groups.\n\nI've Found a " + ObjectTypeEditText.getText().toString().trim() + ". It is a " + DescriptionEditText.getText().toString().trim() + "\n\n To collect it you may contact the undersigned\n\n" + NameEditText.getText().toString().trim() + "\n" + ContactNumberEditText.getText().toString().trim();
         }
-        intent.putExtra(Intent.EXTRA_SUBJECT,details.getmObjectType()+" "+RadioButtonStatus());
+        //Setting the subject of mail
+        intent.putExtra(Intent.EXTRA_SUBJECT,ObjectTypeEditText.getText().toString().trim()+" "+RadioButtonStatus());
+        //Setting the body of mail
         intent.putExtra(Intent.EXTRA_TEXT,body);
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
