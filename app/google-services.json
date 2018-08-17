@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "406754682277",
+    "firebase_url": "https://hideseek-8c962.firebaseio.com",
+    "project_id": "hideseek-8c962",
+    "storage_bucket": "hideseek-8c962.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:406754682277:android:785c8c1e8d9103f0",
+        "android_client_info": {
+          "package_name": "com.example.android.hideseek"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "406754682277-6orsjbvg5hl1tnd7gj20s15upnfs93fm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.hideseek",
+            "certificate_hash": "97923834290487c0b933f88814ad20e4e9f4a86f"
+          }
+        },
+        {
+          "client_id": "406754682277-968pdidqi2oblspkr5ap4uaar9ebps25.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQp8wRWVz1Pcdtl7fvHIDQYMHO5QOl6cs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "406754682277-968pdidqi2oblspkr5ap4uaar9ebps25.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
