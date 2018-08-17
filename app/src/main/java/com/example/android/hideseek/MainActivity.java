@@ -53,15 +53,14 @@ public class MainActivity extends AppCompatActivity {
                 //Gets the current position on List View and sends an intent to open Description Activity
                 Details currDetails = detailsList.get(position);
                 Intent intent = new Intent(MainActivity.this, IssueDescription.class);
+                intent.putExtra("DETAILS",currDetails);
                 startActivity(intent);
             }
         });
+        getData();
     }
 
-
-    @Override
-    protected void onStart() {
-        super.onStart();
+    private void getData() {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -82,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
