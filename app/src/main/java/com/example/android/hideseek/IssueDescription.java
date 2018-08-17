@@ -1,6 +1,7 @@
 package com.example.android.hideseek;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +18,7 @@ public class IssueDescription extends AppCompatActivity {
 
     private TextView NameTextView, ContactTextView, DescriptionTextView, EmailTextView;
     DatabaseReference databaseReference;
-
+    private String number;
 
 
     @Override
@@ -34,10 +35,25 @@ public class IssueDescription extends AppCompatActivity {
         Button ContactViaPhone = findViewById(R.id.contact_via_phone_button);
         Button ContactViaEmail = findViewById(R.id.contact_via_email_button);
 
+        Intent intent = getIntent();
+        Details details = (Details) intent.getExtras().get("DETAILS");
+
+        if(details != null) {
+            String name = details.getmName();
+            number = details.getmContactNumber();
+            String email = details.getmEmail();
+            String description = details.getmDescription();
+
+            NameTextView.setText(name);
+            ContactTextView.setText(number);
+            EmailTextView.setText(email);
+            DescriptionTextView.setText(description);
+        }
+
         ContactViaPhone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                openDialerActivity(number);
             }
         });
 
@@ -47,20 +63,16 @@ public class IssueDescription extends AppCompatActivity {
 
             }
         });
-
-        Intent intent = getIntent();
-        Details details = (Details) intent.getExtras().get("DETAILS");
-
-        if(details != null) {
-            String name = details.getmName();
-            String number = details.getmContactNumber();
-            String email = details.getmEmail();
-            String description = details.getmDescription();
-
-            NameTextView.setText(name);
-            ContactTextView.setText(number);
-            EmailTextView.setText(email);
-            DescriptionTextView.setText(description);
+    }
+    /*
+    Opens the dialer activity when the Create
+     */
+    private void openDialerActivity(String phoneNumber){
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:"+phoneNumber));
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
         }
+
     }
 }
