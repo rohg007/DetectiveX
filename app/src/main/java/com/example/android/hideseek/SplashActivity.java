@@ -6,7 +6,7 @@ import android.os.Handler;
 import android.content.Intent;
 
 public class SplashActivity extends AppCompatActivity {
-    private static int SPLASH_TIME= 5000;
+    private static int SPLASH_TIME= 4000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +20,7 @@ public class SplashActivity extends AppCompatActivity {
                 Intent mySuperIntent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(mySuperIntent);
                 /* This 'finish()' is for exiting the app when back button pressed
-                 *  from Home page which is ActivityHome
+                 *  from Home page which is MainActivity
                  */
                 finish();
             }
