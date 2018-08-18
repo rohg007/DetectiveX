@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
-        android:text="Lost N Found"
+        android:text="Lost N Found "
         android:textColor="#ffffff"
         android:textSize="50dp"
         tools:layout_editor_absoluteX="33dp"
