@@ -14,6 +14,7 @@ public class Details implements Parcelable {
     private String mDescription;
     private String mEmail;
     private String mId;
+    private String mImageUrl;
 
     //Empty because defining a custom constructor
     public Details(){
@@ -40,6 +41,17 @@ public class Details implements Parcelable {
         this.mEmail=email;
     }
 
+    public Details(String Id,String lostFound,String name,String contactNumber,String objectType,String description,String email,String imageUrl){
+        this.mId = Id;
+        this.LostFound=lostFound;
+        this.mName=name;
+        this.mContactNumber=contactNumber;
+        this.mObjectType=objectType;
+        this.mDescription=description;
+        this.mEmail=email;
+        this.mImageUrl=imageUrl;
+    }
+
 
     protected Details(Parcel in) {
         LostFound = in.readString();
@@ -49,6 +61,7 @@ public class Details implements Parcelable {
         mDescription = in.readString();
         mEmail = in.readString();
         mId = in.readString();
+        mImageUrl = in.readString();
     }
 
     @Override
@@ -60,6 +73,7 @@ public class Details implements Parcelable {
         dest.writeString(mDescription);
         dest.writeString(mEmail);
         dest.writeString(mId);
+        dest.writeString(mImageUrl);
     }
 
     @Override
@@ -82,6 +96,7 @@ public class Details implements Parcelable {
     /*
     Encapsulating all fields
      */
+
     public String getLostFound() {
         return LostFound;
     }
@@ -136,5 +151,13 @@ public class Details implements Parcelable {
 
     public void setmId(String mId) {
         this.mId = mId;
+    }
+
+    public String getmImageUrl() {
+        return mImageUrl;
+    }
+
+    public void setmImageUrl(String mImageUrl) {
+        this.mImageUrl = mImageUrl;
     }
 }

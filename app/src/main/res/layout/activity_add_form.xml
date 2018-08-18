@@ -139,6 +139,14 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginEnd="16dp"/>
 
+            <ProgressBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_margin="16dp"
+                android:visibility="gone"
+                android:id="@+id/image_upload_progress_bar"/>
+
 
             <LinearLayout
                 android:layout_width="wrap_content"

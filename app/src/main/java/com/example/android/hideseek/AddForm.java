@@ -1,20 +1,31 @@
 package com.example.android.hideseek;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 public class AddForm extends AppCompatActivity {
 
@@ -23,6 +34,10 @@ public class AddForm extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private static final int PICK_IMAGE_REQUEST = 2;
     private ImageView browseImageView;
+    private Uri mImageUri;
+    private StorageReference storageReference;
+    private ProgressBar imageProgressBar;
+    private String imageUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,14 +59,16 @@ public class AddForm extends AppCompatActivity {
         DescriptionEditText = findViewById(R.id.description_edit_text);
         TextView ResetTextView = findViewById(R.id.reset_text_view);
         browseImageView = findViewById(R.id.optional_image_view);
+        imageProgressBar = findViewById(R.id.image_upload_progress_bar);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("LostFoundDetails");
+        storageReference = FirebaseStorage.getInstance().getReference("LostFoundDetails");
 
         //When Upload Button is clicked
         UploadImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                uploadImage();
             }
         });
         //When Browse Image is clicked
@@ -104,10 +121,19 @@ public class AddForm extends AppCompatActivity {
      */
     private void addDetailsToFirebase() {
         try{
-            if(!TextUtils.isEmpty(getDetails().getmName())&&!TextUtils.isEmpty(getDetails().getmContactNumber())&&!TextUtils.isEmpty(getDetails().getmDescription())&&!TextUtils.isEmpty(getDetails().getmObjectType())&&!TextUtils.isEmpty(getDetails().getmEmail())&&!TextUtils.isEmpty(getDetails().getmDescription())) {
+            if(!TextUtils.isEmpty(getDetails().getmName())&&!TextUtils.isEmpty(getDetails().getmContactNumber())&&!TextUtils.isEmpty(getDetails().getmDescription())&&!TextUtils.isEmpty(getDetails().getmObjectType())&&!TextUtils.isEmpty(getDetails().getmEmail())&&!TextUtils.isEmpty(getDetails().getmDescription())&&browseImageView.getDrawable()==null) {
                 //Storing the Id
                 String id = databaseReference.push().getKey();
                 Details details1 = new Details(id, getDetails().getLostFound(), getDetails().getmName(), getDetails().getmContactNumber(), getDetails().getmObjectType(), getDetails().getmDescription(), getDetails().getmEmail());
+                //Now saving the details in Real time Database under id node
+                databaseReference.child(id).setValue(details1);
+                //if task is successful display toast message
+                Toast.makeText(getApplicationContext(), "Details Successfully Uploaded", Toast.LENGTH_SHORT).show();
+            }
+            else if(!TextUtils.isEmpty(getDetails().getmName())&&!TextUtils.isEmpty(getDetails().getmContactNumber())&&!TextUtils.isEmpty(getDetails().getmDescription())&&!TextUtils.isEmpty(getDetails().getmObjectType())&&!TextUtils.isEmpty(getDetails().getmEmail())&&!TextUtils.isEmpty(getDetails().getmDescription())&&browseImageView.getDrawable()!=null) {
+                //Storing the Id
+                String id = databaseReference.push().getKey();
+                Details details1 = new Details(id, getDetails().getLostFound(), getDetails().getmName(), getDetails().getmContactNumber(), getDetails().getmObjectType(), getDetails().getmDescription(), getDetails().getmEmail(),getDetails().getmImageUrl());
                 //Now saving the details in Real time Database under id node
                 databaseReference.child(id).setValue(details1);
                 //if task is successful display toast message
@@ -188,8 +214,52 @@ public class AddForm extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode==PICK_IMAGE_REQUEST){
-            Uri mImageUri = data.getData();
+            mImageUri = data.getData();
             browseImageView.setImageURI(mImageUri);
+        }
+    }
+    private String getFileExtension(Uri uri){
+        ContentResolver contentResolver = getContentResolver();
+        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
+    }
+
+    private void uploadImage(){
+        if (mImageUri!=null){
+            StorageReference fileReference = storageReference.child(System.currentTimeMillis()+"."+getFileExtension(mImageUri));
+            fileReference.putFile(mImageUri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    imageProgressBar.setProgress(0);
+                                    imageProgressBar.setVisibility(View.GONE);
+                                }
+                            },5000);
+                            Toast.makeText(getApplicationContext(),"Image Upload Successful",Toast.LENGTH_SHORT).show();
+                            Details details = new Details();
+                            imageUrl = taskSnapshot.getDownloadUrl().toString();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            imageProgressBar.setVisibility(View.VISIBLE);
+                            double progress = (100*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+                            imageProgressBar.setProgress((int) progress);
+                        }
+                    });
+        }else {
+            Toast.makeText(getApplicationContext(),"No Image Selected",Toast.LENGTH_SHORT).show();
         }
     }
 }
