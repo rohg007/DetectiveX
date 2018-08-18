@@ -12,10 +12,10 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="172dp"
         android:text="Lost N Found"
+        android:textColor="#ffffff"
         android:textSize="50dp"
         tools:layout_editor_absoluteX="33dp"
         tools:layout_editor_absoluteY="250dp" />
@@ -26,6 +26,6 @@
         android:layout_height="131dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="163dp"
+        android:layout_marginTop="193dp"
         app:srcCompat="@drawable/splashimage" />
 </RelativeLayout>
