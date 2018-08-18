@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:background="@color/colorPrimary"
     android:layout_height="match_parent"
-    tools:context=".SplashActivity">
-
+    tools:context=".SplashActivity"
+    android:backgroundTint="#212121">
 
     <TextView
         android:id="@+id/textView"
@@ -16,5 +16,6 @@
         android:text="Lost N Found"
         android:textSize="50dp"
         tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="250dp" />
+        tools:layout_editor_absoluteY="250dp"
+        android:typeface="monospace"/>
 </RelativeLayout>
