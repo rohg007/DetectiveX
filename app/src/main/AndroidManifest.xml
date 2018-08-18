@@ -22,8 +22,9 @@
         <activity
             android:name=".AddForm"
             android:label="Add the Object Form"
-            android:theme="@style/AppTheme"></activity>
-        <activity android:name=".IssueDescription"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".IssueDescription" />
+        <activity android:name=".SplashActivity"></activity>
     </application>
 
 </manifest>
