@@ -36,7 +36,8 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:textSize="20sp"
-                    tools:text="name here" />
+                    tools:text="name here"
+                    android:textColor="#FFEA00"/>
 
             </LinearLayout>
 
@@ -61,7 +62,8 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:textSize="20sp"
-                    tools:text="number here" />
+                    tools:text="number here"
+                    android:textColor="#64DD17"/>
 
             </LinearLayout>
 
@@ -87,7 +89,8 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:textSize="20sp"
-                    tools:text="email here" />
+                    tools:text="email here"
+                    android:textColor="#00E5FF"/>
 
             </LinearLayout>
 
@@ -108,7 +111,8 @@
                 android:layout_marginTop="16dp"
                 android:textSize="20sp"
                 tools:text="description here"
-                android:id="@+id/description_description_text_view"/>
+                android:id="@+id/description_description_text_view"
+                android:textColor="#AEEA00"/>
 
             <ImageView
                 android:id="@+id/description_image_view"

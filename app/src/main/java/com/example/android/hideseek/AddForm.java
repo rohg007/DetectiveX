@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +21,8 @@ public class AddForm extends AppCompatActivity {
     private RadioButton LostRadioButton, FoundRadioButton;
     private EditText NameEditText, ContactNumberEditText, EmailEditText, ObjectTypeEditText, DescriptionEditText;
     private DatabaseReference databaseReference;
+    private static final int PICK_IMAGE_REQUEST = 2;
+    private ImageView browseImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,7 @@ public class AddForm extends AppCompatActivity {
         ObjectTypeEditText = findViewById(R.id.object_type_edit_text);
         DescriptionEditText = findViewById(R.id.description_edit_text);
         TextView ResetTextView = findViewById(R.id.reset_text_view);
+        browseImageView = findViewById(R.id.optional_image_view);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("LostFoundDetails");
 
@@ -54,7 +58,7 @@ public class AddForm extends AppCompatActivity {
         BrowseTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                openFileChooser();
             }
         });
         //When Submit Button is clicked
@@ -127,6 +131,7 @@ public class AddForm extends AppCompatActivity {
         ObjectTypeEditText.setText("");
         DescriptionEditText.setText("");
         EmailEditText.setText("");
+        browseImageView.setImageResource(0);
     }
     /*
     Gives the Status of which Radio Button is selected
@@ -146,7 +151,7 @@ public class AddForm extends AppCompatActivity {
     /*
     Creates and Email Intent when Create Email Button is clicked
      */
-    public void orderMail ()
+    private void orderMail ()
     {
         String body = "";
         Intent intent = new Intent(Intent.ACTION_SENDTO);
@@ -164,6 +169,27 @@ public class AddForm extends AppCompatActivity {
         intent.putExtra(Intent.EXTRA_TEXT,body);
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
+        }
+    }
+
+    /*
+    Shows Images in the device when Browse text view is clicked
+     */
+    private void openFileChooser()
+    {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent,PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==PICK_IMAGE_REQUEST){
+            Uri mImageUri = data.getData();
+            browseImageView.setImageURI(mImageUri);
         }
     }
 }

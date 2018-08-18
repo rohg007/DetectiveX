@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         getData();
     }
 
+
     private void getData() {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
