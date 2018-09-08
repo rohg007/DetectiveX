@@ -5,7 +5,8 @@ import android.os.Parcelable;
 
 /*
 Details Model Class for Custom List View
- */
+*/
+
 public class Details implements Parcelable {
     private String LostFound;
     private String mName;
@@ -15,6 +16,7 @@ public class Details implements Parcelable {
     private String mEmail;
     private String mId;
     private String mImageUrl;
+    private String mVisibililty;
 
     //Empty because defining a custom constructor
     public Details(){
@@ -31,7 +33,7 @@ public class Details implements Parcelable {
         this.mEmail=email;
     }
 
-    public Details(String Id,String lostFound,String name,String contactNumber,String objectType,String description,String email){
+    public Details(String Id,String lostFound,String name,String contactNumber,String objectType,String description,String email,String visibility){
         this.mId = Id;
         this.LostFound=lostFound;
         this.mName=name;
@@ -39,9 +41,10 @@ public class Details implements Parcelable {
         this.mObjectType=objectType;
         this.mDescription=description;
         this.mEmail=email;
+        this.setmVisibililty(visibility);
     }
 
-    public Details(String Id,String lostFound,String name,String contactNumber,String objectType,String description,String email,String imageUrl){
+    public Details(String Id,String lostFound,String name,String contactNumber,String objectType,String description,String email,String imageUrl,String visibility){
         this.mId = Id;
         this.LostFound=lostFound;
         this.mName=name;
@@ -50,6 +53,7 @@ public class Details implements Parcelable {
         this.mDescription=description;
         this.mEmail=email;
         this.mImageUrl=imageUrl;
+        this.setmVisibililty(visibility);
     }
 
 
@@ -62,6 +66,7 @@ public class Details implements Parcelable {
         mEmail = in.readString();
         mId = in.readString();
         mImageUrl = in.readString();
+        setmVisibililty(in.readString());
     }
 
     @Override
@@ -74,6 +79,7 @@ public class Details implements Parcelable {
         dest.writeString(mEmail);
         dest.writeString(mId);
         dest.writeString(mImageUrl);
+        dest.writeString(getmVisibililty());
     }
 
     @Override
@@ -159,5 +165,14 @@ public class Details implements Parcelable {
 
     public void setmImageUrl(String mImageUrl) {
         this.mImageUrl = mImageUrl;
+    }
+
+
+    public String getmVisibililty() {
+        return mVisibililty;
+    }
+
+    public void setmVisibililty(String mVisibililty) {
+        this.mVisibililty = mVisibililty;
     }
 }

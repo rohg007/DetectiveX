@@ -16,29 +16,29 @@ import java.util.List;
 /*
 Creating custom adapter
  */
-public class DetailsAdapter extends ArrayAdapter<Details>{
+public class DetailsAdapter extends ArrayAdapter<Details> {
     private Context context;
     private List<Details> detailsList;
 
-    public DetailsAdapter(Activity context, List<Details> detailsList){
-        super(context,0,detailsList);
+    public DetailsAdapter(Activity context, List<Details> detailsList) {
+        super(context, 0, detailsList);
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View listViewItem = convertView;
-        if(listViewItem==null){
-            listViewItem = LayoutInflater.from(getContext()).inflate(R.layout.list_layout,null,false);
+        if (listViewItem == null) {
+            listViewItem = LayoutInflater.from(getContext()).inflate(R.layout.list_layout, null, false);
         }
         final Details currentDetails = getItem(position);
 
         TextView titleTextView = listViewItem.findViewById(R.id.title_text_view);
-        String title = currentDetails.getLostFound()+" "+currentDetails.getmObjectType();
+        String title = currentDetails.getLostFound() + " " + currentDetails.getmObjectType();
         titleTextView.setText(title);
 
         TextView authorTextView = listViewItem.findViewById(R.id.author_text_view);
-        String author = "By "+currentDetails.getmName()+", "+currentDetails.getmContactNumber();
+        String author = "By " + currentDetails.getmName() + ", " + currentDetails.getmContactNumber();
         authorTextView.setText(author);
 
         return listViewItem;

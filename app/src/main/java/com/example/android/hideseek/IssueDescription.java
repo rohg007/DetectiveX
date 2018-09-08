@@ -6,7 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -14,7 +17,7 @@ public class IssueDescription extends AppCompatActivity {
 
 
     DatabaseReference databaseReference;
-    private String number,name,email,objectType,lostFound;
+    private String number,name,email,objectType,lostFound,image;
 
 
     @Override
@@ -30,9 +33,11 @@ public class IssueDescription extends AppCompatActivity {
         TextView EmailTextView = findViewById(R.id.description_email_text_view);
         Button ContactViaPhone = findViewById(R.id.contact_via_phone_button);
         Button ContactViaEmail = findViewById(R.id.contact_via_email_button);
+        ImageView descriptionImageView = findViewById(R.id.description_image_view);
+        Button resolveButton = findViewById(R.id.resolve_button);
 
         Intent intent = getIntent();
-        Details details = (Details) intent.getExtras().get("DETAILS");
+        final Details details = (Details) intent.getExtras().get("DETAILS");
 
         if(details != null) {
             name = details.getmName();
@@ -41,11 +46,19 @@ public class IssueDescription extends AppCompatActivity {
             String description = details.getmDescription();
             objectType = details.getmObjectType();
             lostFound = details.getLostFound();
+            image = details.getmImageUrl();
 
             NameTextView.setText(name);
             ContactTextView.setText(number);
             EmailTextView.setText(email);
             DescriptionTextView.setText(description);
+            /*
+                Setting Images to the Image View
+            */
+            if(image!=null)
+            {
+                Glide.with(this).load(image).into(descriptionImageView);
+            }
         }
 
         ContactViaPhone.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +72,13 @@ public class IssueDescription extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 createMailOnClick();
+            }
+        });
+
+        resolveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                details.setmVisibililty("NO");
             }
         });
     }

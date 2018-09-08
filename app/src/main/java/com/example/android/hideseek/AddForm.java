@@ -124,7 +124,7 @@ public class AddForm extends AppCompatActivity {
             if(!TextUtils.isEmpty(getDetails().getmName())&&!TextUtils.isEmpty(getDetails().getmContactNumber())&&!TextUtils.isEmpty(getDetails().getmDescription())&&!TextUtils.isEmpty(getDetails().getmObjectType())&&!TextUtils.isEmpty(getDetails().getmEmail())&&!TextUtils.isEmpty(getDetails().getmDescription())&&browseImageView.getDrawable()==null) {
                 //Storing the Id
                 String id = databaseReference.push().getKey();
-                Details details1 = new Details(id, getDetails().getLostFound(), getDetails().getmName(), getDetails().getmContactNumber(), getDetails().getmObjectType(), getDetails().getmDescription(), getDetails().getmEmail());
+                Details details1 = new Details(id, getDetails().getLostFound(), getDetails().getmName(), getDetails().getmContactNumber(), getDetails().getmObjectType(), getDetails().getmDescription(), getDetails().getmEmail(),"YES");
                 //Now saving the details in Real time Database under id node
                 databaseReference.child(id).setValue(details1);
                 //if task is successful display toast message
@@ -133,7 +133,7 @@ public class AddForm extends AppCompatActivity {
             else if(!TextUtils.isEmpty(getDetails().getmName())&&!TextUtils.isEmpty(getDetails().getmContactNumber())&&!TextUtils.isEmpty(getDetails().getmDescription())&&!TextUtils.isEmpty(getDetails().getmObjectType())&&!TextUtils.isEmpty(getDetails().getmEmail())&&!TextUtils.isEmpty(getDetails().getmDescription())&&browseImageView.getDrawable()!=null) {
                 //Storing the Id
                 String id = databaseReference.push().getKey();
-                Details details1 = new Details(id, getDetails().getLostFound(), getDetails().getmName(), getDetails().getmContactNumber(), getDetails().getmObjectType(), getDetails().getmDescription(), getDetails().getmEmail(),getDetails().getmImageUrl());
+                Details details1 = new Details(id, getDetails().getLostFound(), getDetails().getmName(), getDetails().getmContactNumber(), getDetails().getmObjectType(), getDetails().getmDescription(), getDetails().getmEmail(),imageUrl,"YES");
                 //Now saving the details in Real time Database under id node
                 databaseReference.child(id).setValue(details1);
                 //if task is successful display toast message
@@ -242,6 +242,7 @@ public class AddForm extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),"Image Upload Successful",Toast.LENGTH_SHORT).show();
                             Details details = new Details();
                             imageUrl = taskSnapshot.getDownloadUrl().toString();
+                            details.setmImageUrl(imageUrl);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

@@ -63,7 +63,7 @@
                     android:layout_marginTop="16dp"
                     android:textSize="20sp"
                     tools:text="number here"
-                    android:textColor="#64DD17"/>
+                    android:textColor="#64DD17" />
 
             </LinearLayout>
 
@@ -116,11 +116,11 @@
 
             <ImageView
                 android:id="@+id/description_image_view"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:adjustViewBounds="true"
-                android:scaleType="center" />
+                android:scaleType="fitCenter" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -136,7 +136,9 @@
                     android:textSize="20sp"
                     android:layout_weight="1"
                     android:layout_marginEnd="5dp"
-                    android:layout_marginRight="5dp"/>
+                    android:layout_marginRight="5dp"
+                    android:background="#00897B"
+                    android:textColor="@android:color/white" />
 
                 <Button
                     android:id="@+id/contact_via_email_button"
@@ -148,14 +150,21 @@
                     android:textAllCaps="false"
                     android:textSize="20sp"
                     android:text="Contact via Email"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:background="#00897B"
+                    android:textColor="@android:color/white"/>
 
             </LinearLayout>
-
-
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Resolve"
+                android:layout_marginTop="16dp"
+                android:background="#00897B"
+                android:textColor="@android:color/white"
+                android:shadowRadius="90"
+                android:id="@+id/resolve_button"/>
         </LinearLayout>
-
-
     </ScrollView>
-
 </LinearLayout>

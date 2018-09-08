@@ -159,7 +159,9 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="Upload" />
+                    android:text="Upload"
+                    android:background="#00897B"
+                    android:textColor="@android:color/white"/>
 
                 <TextView
                     android:id="@+id/browse_text_view"
@@ -191,7 +193,9 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_weight="1"
-                    android:text="Submit" />
+                    android:text="Submit"
+                    android:background="#00897B"
+                    android:textColor="@android:color/white"/>
 
                 <Button
                     android:id="@+id/create_mail_button"
@@ -202,7 +206,9 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_weight="1"
-                    android:text="Create E-Mail" />
+                    android:text="Create E-Mail"
+                    android:background="#00897B"
+                    android:textColor="@android:color/white"/>
 
             </LinearLayout>
 
@@ -215,7 +221,8 @@
                 android:textSize="16sp"
                 android:clickable="true"
                 android:focusable="true"
-                android:background="?android:attr/selectableItemBackground"/>
+                android:background="?android:attr/selectableItemBackground"
+                />
         </LinearLayout>
 
     </ScrollView>

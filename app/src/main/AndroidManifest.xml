@@ -19,7 +19,8 @@
             android:name=".AddForm"
             android:label="Add the Object Form"
             android:theme="@style/AppTheme" />
-        <activity android:name=".IssueDescription" />
+        <activity android:name=".IssueDescription"
+            android:theme="@style/AppTheme" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

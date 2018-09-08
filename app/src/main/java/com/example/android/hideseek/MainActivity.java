@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //When Fab is clicked the Add Form is called
-                Intent intent = new Intent(MainActivity.this,AddForm.class);
+                Intent intent = new Intent(MainActivity.this, AddForm.class);
                 startActivity(intent);
             }
         });
@@ -54,10 +54,11 @@ public class MainActivity extends AppCompatActivity {
                 //Gets the current position on List View and sends an intent to open Description Activity
                 Details currDetails = detailsList.get(position);
                 Intent intent = new Intent(MainActivity.this, IssueDescription.class);
-                intent.putExtra("DETAILS",currDetails);
+                intent.putExtra("DETAILS", currDetails);
                 startActivity(intent);
             }
         });
+
         getData();
     }
 
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 detailsList.clear();
                 //Data Snapshot to get the data from Firebase Database
-                for(DataSnapshot lostFoundSnapshot: dataSnapshot.getChildren()){
+                for (DataSnapshot lostFoundSnapshot : dataSnapshot.getChildren()) {
                     Details details = lostFoundSnapshot.getValue(Details.class);
                     detailsList.add(details);
                 }
@@ -79,12 +80,10 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(),databaseError.getCode()+": "+databaseError.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), databaseError.getCode() + ": " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
-
-
 
 
     @Override
