@@ -71,7 +71,8 @@ public class MainActivity extends AppCompatActivity {
                 //Data Snapshot to get the data from Firebase Database
                 for (DataSnapshot lostFoundSnapshot : dataSnapshot.getChildren()) {
                     Details details = lostFoundSnapshot.getValue(Details.class);
-                    detailsList.add(details);
+                    if(details.getmVisibililty().equals("YES"))
+                        detailsList.add(details);
                 }
                 //Sets the adapter to Details Adapter for our custom list
                 DetailsAdapter detailsAdapter = new DetailsAdapter(MainActivity.this, detailsList);

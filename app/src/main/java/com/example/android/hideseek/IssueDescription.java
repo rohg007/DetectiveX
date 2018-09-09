@@ -1,7 +1,9 @@
 package com.example.android.hideseek;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -78,7 +80,11 @@ public class IssueDescription extends AppCompatActivity {
         resolveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                details.setmVisibililty("NO");
+
+                                databaseReference.child("LostFoundDetails").child(details.getmId()).child("mVisibililty").setValue("NO");
+                                TextView resolvedTextView = findViewById(R.id.issue_resolved_text_view);
+                                resolvedTextView.setText("RESOLVED");
+                                resolvedTextView.setVisibility(View.VISIBLE);
             }
         });
     }
