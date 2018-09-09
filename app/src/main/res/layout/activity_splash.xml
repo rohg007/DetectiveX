@@ -4,28 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
-    tools:context=".SplashActivity">
+    tools:context=".SplashActivity"
+    android:layout_gravity="center_vertical">
 
 
-    <TextView
+    <ImageView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
-        android:text="Lost N Found "
-        android:textColor="#ffffff"
-        android:textSize="50dp"
-        tools:layout_editor_absoluteX="33dp"
-        tools:layout_editor_absoluteY="250dp" />
+        app:srcCompat="@drawable/detectivex"
+        android:layout_marginBottom="16dp"/>
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
-        android:layout_height="131dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="193dp"
-        app:srcCompat="@drawable/splashimage" />
+        android:layout_marginTop="50dp"
+        app:srcCompat="@drawable/glass_logo" />
 </RelativeLayout>

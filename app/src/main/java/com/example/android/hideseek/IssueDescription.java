@@ -21,7 +21,6 @@ public class IssueDescription extends AppCompatActivity {
     DatabaseReference databaseReference;
     private String number,name,email,objectType,lostFound,image;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,11 +79,28 @@ public class IssueDescription extends AppCompatActivity {
         resolveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(IssueDescription.this);
 
+                builder
+                        .setTitle("Mark as Resolved?")
+                        .setMessage("Once resolved, Issue won't list on the app.\nTo list the issue again on the app, contact the administrator.")
+                        .setPositiveButton("Yes",  new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
                                 databaseReference.child("LostFoundDetails").child(details.getmId()).child("mVisibililty").setValue("NO");
                                 TextView resolvedTextView = findViewById(R.id.issue_resolved_text_view);
                                 resolvedTextView.setText("RESOLVED");
-                                resolvedTextView.setVisibility(View.VISIBLE);
+                                resolvedTextView.setVisibility(View.VISIBLE);// Yes-code
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,int id) {
+                                dialog.cancel();
+                            }
+                        })
+                        .show();
+
             }
         });
     }
