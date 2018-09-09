@@ -26,6 +26,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:text="Name:"
+                    android:textStyle="bold"
                     android:textSize="20sp" />
 
                 <TextView
@@ -37,7 +38,7 @@
                     android:layout_marginTop="16dp"
                     android:textSize="20sp"
                     tools:text="name here"
-                    android:textColor="#FFEA00"/>
+                    android:textColor="#424242"/>
 
             </LinearLayout>
 
@@ -52,6 +53,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:text="Contact No.:"
+                    android:textStyle="bold"
                     android:textSize="20sp" />
 
                 <TextView
@@ -63,7 +65,7 @@
                     android:layout_marginTop="16dp"
                     android:textSize="20sp"
                     tools:text="number here"
-                    android:textColor="#64DD17" />
+                    android:textColor="#424242" />
 
             </LinearLayout>
 
@@ -79,6 +81,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:text="Email:"
+                    android:textStyle="bold"
                     android:textSize="20sp" />
 
                 <TextView
@@ -90,7 +93,7 @@
                     android:layout_marginTop="16dp"
                     android:textSize="20sp"
                     tools:text="email here"
-                    android:textColor="#00E5FF"/>
+                    android:textColor="#424242"/>
 
             </LinearLayout>
 
@@ -101,6 +104,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="Description:"
+                android:textStyle="bold"
                 android:textSize="20sp" />
 
             <TextView
@@ -112,7 +116,7 @@
                 android:textSize="20sp"
                 tools:text="description here"
                 android:id="@+id/description_description_text_view"
-                android:textColor="#AEEA00"/>
+                android:textColor="#424242"/>
 
             <ImageView
                 android:id="@+id/description_image_view"
@@ -137,7 +141,9 @@
                     android:layout_weight="1"
                     android:layout_marginEnd="5dp"
                     android:layout_marginRight="5dp"
-                    android:background="#00897B"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:background="@color/colorPrimary"
                     android:textColor="@android:color/white" />
 
                 <Button
@@ -147,11 +153,13 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
                     android:textAllCaps="false"
                     android:textSize="20sp"
                     android:text="Contact via Email"
                     android:layout_weight="1"
-                    android:background="#00897B"
+                    android:background="@color/colorPrimary"
                     android:textColor="@android:color/white"/>
 
             </LinearLayout>
@@ -161,7 +169,7 @@
                 android:layout_gravity="center"
                 android:text="Resolve"
                 android:layout_marginTop="16dp"
-                android:background="#00897B"
+                android:background="@color/colorPrimary"
                 android:textColor="@android:color/white"
                 android:shadowRadius="90"
                 android:id="@+id/resolve_button"/>
