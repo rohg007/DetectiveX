@@ -6,6 +6,8 @@ import android.os.Handler;
 import android.content.Intent;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.example.android.hideseek.AccountActivity.LoginActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,7 +38,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //Do any action here. Now we are moving to next page
-                Intent mySuperIntent = new Intent(SplashActivity.this, MainActivity.class);
+                Intent mySuperIntent = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(mySuperIntent);
                 /* This 'finish()' is for exiting the app when back button pressed
                  *  from Home page which is MainActivity
