@@ -41,6 +41,13 @@ public class DetailsAdapter extends ArrayAdapter<Details> {
         String author = "By " + currentDetails.getmName() + ", " + currentDetails.getmContactNumber();
         authorTextView.setText(author);
 
+        TextView lfTextView = listViewItem.findViewById(R.id.lf_text_view);
+
+        if(currentDetails.getLostFound().equals("Lost"))
+            lfTextView.setText("L");
+        else if(currentDetails.getLostFound().equals("Found"))
+            lfTextView.setText("F");
+
         return listViewItem;
     }
 }
