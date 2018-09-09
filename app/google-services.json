@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "406754682277-7ncbb8n70mho498fiv6illof6lb9gqoa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.hideseek",
+            "certificate_hash": "f1049fe153900aa0b1636da4392cc1ca9949aa09"
+          }
+        },
+        {
           "client_id": "406754682277-968pdidqi2oblspkr5ap4uaar9ebps25.apps.googleusercontent.com",
           "client_type": 3
         }
