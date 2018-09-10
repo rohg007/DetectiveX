@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -38,6 +39,7 @@ public class AddForm extends AppCompatActivity {
     private StorageReference storageReference;
     private ProgressBar imageProgressBar;
     private String imageUrl;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +63,12 @@ public class AddForm extends AppCompatActivity {
         browseImageView = findViewById(R.id.optional_image_view);
         imageProgressBar = findViewById(R.id.image_upload_progress_bar);
 
+        auth=FirebaseAuth.getInstance();
+
         databaseReference = FirebaseDatabase.getInstance().getReference("LostFoundDetails");
         storageReference = FirebaseStorage.getInstance().getReference("LostFoundDetails");
+
+        EmailEditText.setText(auth.getCurrentUser().getEmail());
 
         //When Upload Button is clicked
         UploadImageButton.setOnClickListener(new View.OnClickListener() {

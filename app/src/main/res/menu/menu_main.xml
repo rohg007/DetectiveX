@@ -7,4 +7,11 @@
         android:orderInCategory="100"
         android:title="Log Out"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/my_issues"
+        android:orderInCategory="99"
+        android:icon="@drawable/ic_action_person_pin"
+        android:title="My Issues"
+        app:showAsAction="ifRoom"
+        />
 </menu>
