@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_lost_found"
         android:label="DetectiveX"
         android:roundIcon="@mipmap/ic_lost_found"
         android:supportsRtl="true"
