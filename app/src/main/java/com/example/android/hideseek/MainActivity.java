@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     List<Details> detailsList;
     FirebaseAuth auth;
-    Details currDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         listViewLostFound = findViewById(R.id.list_view_lost_found);
         detailsList = new ArrayList<>();
         auth = FirebaseAuth.getInstance();
-        Toast.makeText(getApplicationContext(),"Logged In as "+auth.getCurrentUser().getEmail(),Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Logged In as " + auth.getCurrentUser().getEmail(), Toast.LENGTH_SHORT).show();
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 //Data Snapshot to get the data from Firebase Database
                 for (DataSnapshot lostFoundSnapshot : dataSnapshot.getChildren()) {
                     Details details = lostFoundSnapshot.getValue(Details.class);
-                    if(details.getmVisibililty().equals("YES"))
+                    if (details.getmVisibililty().equals("YES"))
                         detailsList.add(details);
                 }
                 //Sets the adapter to Details Adapter for our custom list
@@ -111,12 +110,11 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             FirebaseAuth auth = FirebaseAuth.getInstance();
             auth.signOut();
-            Toast.makeText(getApplicationContext(),"Successfully Logged Out",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Successfully Logged Out", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
-        }
-        else if(id==R.id.my_issues){
-            Intent intent = new Intent(MainActivity.this,Personal_Activity.class);
+        } else if (id == R.id.my_issues) {
+            Intent intent = new Intent(MainActivity.this, Personal_Activity.class);
             startActivity(intent);
         }
 

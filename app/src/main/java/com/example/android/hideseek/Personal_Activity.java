@@ -25,7 +25,6 @@ public class Personal_Activity extends AppCompatActivity {
     DatabaseReference databaseReference;
     List<Details> detailsList;
     FirebaseAuth auth;
-    Details currDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +59,7 @@ public class Personal_Activity extends AppCompatActivity {
                 //Data Snapshot to get the data from Firebase Database
                 for (DataSnapshot lostFoundSnapshot : dataSnapshot.getChildren()) {
                     Details details = lostFoundSnapshot.getValue(Details.class);
-                    if(details.getmEmail().equals(auth.getCurrentUser().getEmail()))
+                    if (details.getmEmail().equals(auth.getCurrentUser().getEmail()))
                         detailsList.add(details);
                 }
                 //Sets the adapter to Details Adapter for our custom list

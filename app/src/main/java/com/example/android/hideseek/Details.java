@@ -19,40 +19,40 @@ public class Details implements Parcelable {
     private String mVisibililty;
 
     //Empty because defining a custom constructor
-    public Details(){
+    public Details() {
 
     }
 
     //custom constructor
-    public Details(String lostFound,String name,String contactNumber,String objectType,String description,String email){
-        this.LostFound=lostFound;
-        this.mName=name;
-        this.mContactNumber=contactNumber;
-        this.mObjectType=objectType;
-        this.mDescription=description;
-        this.mEmail=email;
+    public Details(String lostFound, String name, String contactNumber, String objectType, String description, String email) {
+        this.LostFound = lostFound;
+        this.mName = name;
+        this.mContactNumber = contactNumber;
+        this.mObjectType = objectType;
+        this.mDescription = description;
+        this.mEmail = email;
     }
 
-    public Details(String Id,String lostFound,String name,String contactNumber,String objectType,String description,String email,String visibility){
+    public Details(String Id, String lostFound, String name, String contactNumber, String objectType, String description, String email, String visibility) {
         this.mId = Id;
-        this.LostFound=lostFound;
-        this.mName=name;
-        this.mContactNumber=contactNumber;
-        this.mObjectType=objectType;
-        this.mDescription=description;
-        this.mEmail=email;
+        this.LostFound = lostFound;
+        this.mName = name;
+        this.mContactNumber = contactNumber;
+        this.mObjectType = objectType;
+        this.mDescription = description;
+        this.mEmail = email;
         this.setmVisibililty(visibility);
     }
 
-    public Details(String Id,String lostFound,String name,String contactNumber,String objectType,String description,String email,String imageUrl,String visibility){
+    public Details(String Id, String lostFound, String name, String contactNumber, String objectType, String description, String email, String imageUrl, String visibility) {
         this.mId = Id;
-        this.LostFound=lostFound;
-        this.mName=name;
-        this.mContactNumber=contactNumber;
-        this.mObjectType=objectType;
-        this.mDescription=description;
-        this.mEmail=email;
-        this.mImageUrl=imageUrl;
+        this.LostFound = lostFound;
+        this.mName = name;
+        this.mContactNumber = contactNumber;
+        this.mObjectType = objectType;
+        this.mDescription = description;
+        this.mEmail = email;
+        this.mImageUrl = imageUrl;
         this.setmVisibililty(visibility);
     }
 

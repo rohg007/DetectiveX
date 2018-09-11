@@ -63,7 +63,7 @@ public class AddForm extends AppCompatActivity {
         browseImageView = findViewById(R.id.optional_image_view);
         imageProgressBar = findViewById(R.id.image_upload_progress_bar);
 
-        auth=FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
 
         databaseReference = FirebaseDatabase.getInstance().getReference("LostFoundDetails");
         storageReference = FirebaseStorage.getInstance().getReference("LostFoundDetails");
@@ -122,40 +122,41 @@ public class AddForm extends AppCompatActivity {
         details = new Details(RadioButtonStatus(), name, contactNumber, objectType, description, email);
         return details;
     }
+
     /*
     Adds the Details of form to firebase database
      */
     private void addDetailsToFirebase() {
-        try{
-            if(!TextUtils.isEmpty(getDetails().getmName())&&!TextUtils.isEmpty(getDetails().getmContactNumber())&&!TextUtils.isEmpty(getDetails().getmDescription())&&!TextUtils.isEmpty(getDetails().getmObjectType())&&!TextUtils.isEmpty(getDetails().getmEmail())&&!TextUtils.isEmpty(getDetails().getmDescription())&&browseImageView.getDrawable()==null) {
+        try {
+            if (!TextUtils.isEmpty(getDetails().getmName()) && !TextUtils.isEmpty(getDetails().getmContactNumber()) && !TextUtils.isEmpty(getDetails().getmDescription()) && !TextUtils.isEmpty(getDetails().getmObjectType()) && !TextUtils.isEmpty(getDetails().getmEmail()) && !TextUtils.isEmpty(getDetails().getmDescription()) && browseImageView.getDrawable() == null) {
                 //Storing the Id
                 String id = databaseReference.push().getKey();
-                Details details1 = new Details(id, getDetails().getLostFound(), getDetails().getmName(), getDetails().getmContactNumber(), getDetails().getmObjectType(), getDetails().getmDescription(), getDetails().getmEmail(),"YES");
+                Details details1 = new Details(id, getDetails().getLostFound(), getDetails().getmName(), getDetails().getmContactNumber(), getDetails().getmObjectType(), getDetails().getmDescription(), getDetails().getmEmail(), "YES");
                 //Now saving the details in Real time Database under id node
                 databaseReference.child(id).setValue(details1);
                 //if task is successful display toast message
                 Toast.makeText(getApplicationContext(), "Details Successfully Uploaded", Toast.LENGTH_SHORT).show();
-            }
-            else if(!TextUtils.isEmpty(getDetails().getmName())&&!TextUtils.isEmpty(getDetails().getmContactNumber())&&!TextUtils.isEmpty(getDetails().getmDescription())&&!TextUtils.isEmpty(getDetails().getmObjectType())&&!TextUtils.isEmpty(getDetails().getmEmail())&&!TextUtils.isEmpty(getDetails().getmDescription())&&browseImageView.getDrawable()!=null) {
+            } else if (!TextUtils.isEmpty(getDetails().getmName()) && !TextUtils.isEmpty(getDetails().getmContactNumber()) && !TextUtils.isEmpty(getDetails().getmDescription()) && !TextUtils.isEmpty(getDetails().getmObjectType()) && !TextUtils.isEmpty(getDetails().getmEmail()) && !TextUtils.isEmpty(getDetails().getmDescription()) && browseImageView.getDrawable() != null) {
                 //Storing the Id
                 String id = databaseReference.push().getKey();
-                Details details1 = new Details(id, getDetails().getLostFound(), getDetails().getmName(), getDetails().getmContactNumber(), getDetails().getmObjectType(), getDetails().getmDescription(), getDetails().getmEmail(),imageUrl,"YES");
+                Details details1 = new Details(id, getDetails().getLostFound(), getDetails().getmName(), getDetails().getmContactNumber(), getDetails().getmObjectType(), getDetails().getmDescription(), getDetails().getmEmail(), imageUrl, "YES");
                 //Now saving the details in Real time Database under id node
                 databaseReference.child(id).setValue(details1);
                 //if task is successful display toast message
                 Toast.makeText(getApplicationContext(), "Details Successfully Uploaded", Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(getApplicationContext(),"Fill all the mandatory fields\n One or more mandatory field is blank",Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "Fill all the mandatory fields\n One or more mandatory field is blank", Toast.LENGTH_SHORT).show();
             }
         } catch (Exception exception) {
             //if task fails catch the exception and display in toast message
-            Toast.makeText(getApplicationContext(),"Upload Unsuccessful"+exception.toString(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Upload Unsuccessful" + exception.toString(), Toast.LENGTH_SHORT).show();
         }
     }
+
     /*
     This method Resets the form to initial state
      */
-    private void ResetForm(){
+    private void ResetForm() {
         LostRadioButton.setChecked(false);
         FoundRadioButton.setChecked(false);
         NameEditText.setText("");
@@ -165,11 +166,12 @@ public class AddForm extends AppCompatActivity {
         EmailEditText.setText("");
         browseImageView.setImageResource(0);
     }
+
     /*
     Gives the Status of which Radio Button is selected
      */
-    private String RadioButtonStatus(){
-        String LostFound="";
+    private String RadioButtonStatus() {
+        String LostFound = "";
         //on Radio Button Selected Status
         if (LostRadioButton.isChecked()) {
             LostFound = "Lost";
@@ -180,25 +182,24 @@ public class AddForm extends AppCompatActivity {
         details.setLostFound(LostFound);
         return LostFound;
     }
+
     /*
     Creates and Email Intent when Create Email Button is clicked
      */
-    private void orderMail ()
-    {
+    private void orderMail() {
         String body = "";
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setType("*/*");
         intent.setData(Uri.parse("mailto:"));
-        if(RadioButtonStatus().equals("Lost")) {
-            body = "Sir,\n Please forward this to all UG & PG Groups.\n\nI've lost my " + ObjectTypeEditText.getText().toString().trim() + ". It is a " + DescriptionEditText.getText().toString().trim() + "\n\n Anyone who finds it may contact the undersigned\n\n" + NameEditText.getText().toString().trim()+"\n"+ContactNumberEditText.getText().toString().trim();
-        }
-        else if(RadioButtonStatus().equals("Found")){
+        if (RadioButtonStatus().equals("Lost")) {
+            body = "Sir,\n Please forward this to all UG & PG Groups.\n\nI've lost my " + ObjectTypeEditText.getText().toString().trim() + ". It is a " + DescriptionEditText.getText().toString().trim() + "\n\n Anyone who finds it may contact the undersigned\n\n" + NameEditText.getText().toString().trim() + "\n" + ContactNumberEditText.getText().toString().trim();
+        } else if (RadioButtonStatus().equals("Found")) {
             body = "Sir,\n Please forward this to all UG & PG Groups.\n\nI've Found a " + ObjectTypeEditText.getText().toString().trim() + ". It is a " + DescriptionEditText.getText().toString().trim() + "\n\n To collect it you may contact the undersigned\n\n" + NameEditText.getText().toString().trim() + "\n" + ContactNumberEditText.getText().toString().trim();
         }
         //Setting the subject of mail
-        intent.putExtra(Intent.EXTRA_SUBJECT,ObjectTypeEditText.getText().toString().trim()+" "+RadioButtonStatus());
+        intent.putExtra(Intent.EXTRA_SUBJECT, ObjectTypeEditText.getText().toString().trim() + " " + RadioButtonStatus());
         //Setting the body of mail
-        intent.putExtra(Intent.EXTRA_TEXT,body);
+        intent.putExtra(Intent.EXTRA_TEXT, body);
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
@@ -207,32 +208,32 @@ public class AddForm extends AppCompatActivity {
     /*
     Shows Images in the device when Browse text view is clicked
      */
-    private void openFileChooser()
-    {
+    private void openFileChooser() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent,PICK_IMAGE_REQUEST);
+        startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode==PICK_IMAGE_REQUEST){
+        if (requestCode == PICK_IMAGE_REQUEST) {
             mImageUri = data.getData();
             browseImageView.setImageURI(mImageUri);
         }
     }
-    private String getFileExtension(Uri uri){
+
+    private String getFileExtension(Uri uri) {
         ContentResolver contentResolver = getContentResolver();
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
 
-    private void uploadImage(){
-        if (mImageUri!=null){
-            StorageReference fileReference = storageReference.child(System.currentTimeMillis()+"."+getFileExtension(mImageUri));
+    private void uploadImage() {
+        if (mImageUri != null) {
+            StorageReference fileReference = storageReference.child(System.currentTimeMillis() + "." + getFileExtension(mImageUri));
             fileReference.putFile(mImageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -244,8 +245,8 @@ public class AddForm extends AppCompatActivity {
                                     imageProgressBar.setProgress(0);
                                     imageProgressBar.setVisibility(View.GONE);
                                 }
-                            },5000);
-                            Toast.makeText(getApplicationContext(),"Image Upload Successful",Toast.LENGTH_SHORT).show();
+                            }, 5000);
+                            Toast.makeText(getApplicationContext(), "Image Upload Successful", Toast.LENGTH_SHORT).show();
                             Details details = new Details();
                             imageUrl = taskSnapshot.getDownloadUrl().toString();
                             details.setmImageUrl(imageUrl);
@@ -254,19 +255,19 @@ public class AddForm extends AppCompatActivity {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             imageProgressBar.setVisibility(View.VISIBLE);
-                            double progress = (100*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
+                            double progress = (100 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
                             imageProgressBar.setProgress((int) progress);
                         }
                     });
-        }else {
-            Toast.makeText(getApplicationContext(),"No Image Selected",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "No Image Selected", Toast.LENGTH_SHORT).show();
         }
     }
 }

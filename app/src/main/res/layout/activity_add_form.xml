@@ -127,25 +127,24 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="Add an Image (Optional)"
-                android:textSize="16sp"
-                />
+                android:textSize="16sp" />
 
             <ImageView
                 android:id="@+id/optional_image_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginEnd="16dp"/>
+                android:layout_marginStart="16dp" />
 
             <ProgressBar
+                android:id="@+id/image_upload_progress_bar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_margin="16dp"
-                android:visibility="gone"
-                android:id="@+id/image_upload_progress_bar"/>
+                android:visibility="gone" />
 
 
             <LinearLayout
@@ -159,9 +158,9 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="Upload"
                     android:background="@color/colorPrimary"
-                    android:textColor="@android:color/white"/>
+                    android:text="Upload"
+                    android:textColor="@android:color/white" />
 
                 <TextView
                     android:id="@+id/browse_text_view"
@@ -170,12 +169,12 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="Browse Image"
-                    android:textIsSelectable="true"
-                    android:textSize="16sp"
+                    android:background="?android:attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
-                    android:background="?android:attr/selectableItemBackground"/>
+                    android:text="Browse Image"
+                    android:textIsSelectable="true"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -217,12 +216,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="RESET FORM"
-                android:textSize="16sp"
+                android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:background="?android:attr/selectableItemBackground"
-                />
+                android:text="RESET FORM"
+                android:textSize="16sp" />
         </LinearLayout>
 
     </ScrollView>

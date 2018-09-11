@@ -20,8 +20,8 @@
             android:layout_height="@dimen/logo_w_h"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
-            android:src="@drawable/splashimage"
             android:contentDescription=""
+            android:src="@drawable/splashimage"
             tools:ignore="ContentDescription" />
 
 
@@ -34,7 +34,6 @@
             android:inputType="textEmailAddress"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white" />
-
 
 
         <EditText
@@ -90,8 +89,8 @@
         android:layout_height="100dp"
         android:layout_gravity="center|bottom"
         android:visibility="gone"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="142dp"
-        tools:layout_editor_absoluteY="162dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteY="162dp" />
 
 </android.support.constraint.ConstraintLayout>

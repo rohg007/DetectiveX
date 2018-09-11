@@ -13,16 +13,16 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class SplashActivity extends AppCompatActivity {
-    private static int SPLASH_TIME= 4000;
+    private static int SPLASH_TIME = 4000;
 
     ListView listViewLostFound;
     DatabaseReference databaseReference;
     List<Details> detailsList;
-
 
 
     @Override
@@ -49,14 +49,13 @@ public class SplashActivity extends AppCompatActivity {
     }
 
 
-
     private void getData() {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 detailsList.clear();
                 //Data Snapshot to get the data from Firebase Database
-                for(DataSnapshot lostFoundSnapshot: dataSnapshot.getChildren()){
+                for (DataSnapshot lostFoundSnapshot : dataSnapshot.getChildren()) {
                     Details details = lostFoundSnapshot.getValue(Details.class);
                     detailsList.add(details);
                 }
@@ -67,7 +66,7 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(),databaseError.getCode()+": "+databaseError.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), databaseError.getCode() + ": " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -43,9 +43,9 @@ public class DetailsAdapter extends ArrayAdapter<Details> {
 
         TextView lfTextView = listViewItem.findViewById(R.id.lf_text_view);
 
-        if(currentDetails.getLostFound().equals("Lost"))
+        if (currentDetails.getLostFound().equals("Lost"))
             lfTextView.setText("L");
-        else if(currentDetails.getLostFound().equals("Found"))
+        else if (currentDetails.getLostFound().equals("Found"))
             lfTextView.setText("F");
 
         return listViewItem;

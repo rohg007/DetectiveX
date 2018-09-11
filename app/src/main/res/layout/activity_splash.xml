@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplashActivity"
-    android:layout_gravity="center_vertical">
+    android:layout_gravity="center_vertical"
+    tools:context=".SplashActivity">
 
 
     <ImageView
@@ -14,8 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
-        app:srcCompat="@drawable/detectivex"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        app:srcCompat="@drawable/detectivex" />
 
     <ImageView
         android:id="@+id/imageView"

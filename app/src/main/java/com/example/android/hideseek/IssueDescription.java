@@ -21,9 +21,9 @@ public class IssueDescription extends AppCompatActivity {
 
 
     DatabaseReference databaseReference;
-    private String number,name,email,objectType,lostFound,image;
+    private String number, name, email, objectType, lostFound, image;
     FirebaseAuth auth;
-    Button ContactViaPhone,ContactViaEmail,resolveButton;
+    Button ContactViaPhone, ContactViaEmail, resolveButton;
     TextView resolvedTextView;
 
     @Override
@@ -41,13 +41,13 @@ public class IssueDescription extends AppCompatActivity {
         ContactViaEmail = findViewById(R.id.contact_via_email_button);
         ImageView descriptionImageView = findViewById(R.id.description_image_view);
         resolveButton = findViewById(R.id.resolve_button);
-        resolvedTextView= findViewById(R.id.issue_resolved_text_view);
+        resolvedTextView = findViewById(R.id.issue_resolved_text_view);
 
         auth = FirebaseAuth.getInstance();
         Intent intent = getIntent();
         final Details details = (Details) intent.getExtras().get("DETAILS");
 
-        if(details != null) {
+        if (details != null) {
             name = details.getmName();
             number = details.getmContactNumber();
             email = details.getmEmail();
@@ -63,13 +63,11 @@ public class IssueDescription extends AppCompatActivity {
             /*
                 Setting Images to the Image View
             */
-            if(image!=null)
-            {
+            if (image != null) {
                 Glide.with(this).load(image).into(descriptionImageView);
             }
 
-            if(details.getmVisibililty().equals("NO"))
-            {
+            if (details.getmVisibililty().equals("NO")) {
                 ifResolved();
             }
         }
@@ -115,39 +113,40 @@ public class IssueDescription extends AppCompatActivity {
                             .show();
 
                 } else {
-                    Snackbar.make(resolveButton,"Don't poke your nose in someone else's issue.\nOnly the issue owner can resolve the issue.\nIf you listed the issue them make sure you login with the same ID",Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(resolveButton, "Don't poke your nose in someone else's issue.\nOnly the issue owner can resolve the issue.\nIf you listed the issue them make sure you login with the same ID", Snackbar.LENGTH_LONG).show();
                 }
             }
         });
     }
+
     /*
     Opens the dialer activity when the contactViaPhone Button is clicked
      */
-    private void openDialerActivity(String phoneNumber){
+    private void openDialerActivity(String phoneNumber) {
         Intent intent = new Intent(Intent.ACTION_DIAL);
-        intent.setData(Uri.parse("tel:"+phoneNumber));
+        intent.setData(Uri.parse("tel:" + phoneNumber));
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
 
     }
+
     /*
     Opens Mail Activity when contactViaEmail Button is clicked
     */
-    private void createMailOnClick(){
+    private void createMailOnClick() {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setType("*/*");
-        intent.setData(Uri.parse("mailto:"+email));
-        String body = "Regards,\n"+name+"\n"+number;
-        intent.putExtra(Intent.EXTRA_TEXT,body);
-        intent.putExtra(Intent.EXTRA_SUBJECT,"Regarding "+lostFound+" "+objectType);
+        intent.setData(Uri.parse("mailto:" + email));
+        String body = "Regards,\n" + name + "\n" + number;
+        intent.putExtra(Intent.EXTRA_TEXT, body);
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Regarding " + lostFound + " " + objectType);
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
         }
     }
 
-    private void ifResolved()
-    {
+    private void ifResolved() {
         ContactViaEmail.setVisibility(View.GONE);
         ContactViaPhone.setVisibility(View.GONE);
         resolveButton.setVisibility(View.GONE);

@@ -100,7 +100,6 @@ public class LoginActivity extends AppCompatActivity {
                                 } else {
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     startActivity(intent);
-                                    Toast.makeText(getApplicationContext(),"Successfully logged in as "+email,Toast.LENGTH_SHORT).show();
                                     finish();
                                 }
                             }
