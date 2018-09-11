@@ -21,7 +21,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
             android:contentDescription=""
-            android:src="@drawable/splashimage"
+            android:src="@drawable/logo123"
             tools:ignore="ContentDescription" />
 
 
