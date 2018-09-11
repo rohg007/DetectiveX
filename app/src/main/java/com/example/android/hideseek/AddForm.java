@@ -156,6 +156,7 @@ public class AddForm extends AppCompatActivity {
     /*
     This method Resets the form to initial state
      */
+
     private void ResetForm() {
         LostRadioButton.setChecked(false);
         FoundRadioButton.setChecked(false);
@@ -163,7 +164,6 @@ public class AddForm extends AppCompatActivity {
         ContactNumberEditText.setText("");
         ObjectTypeEditText.setText("");
         DescriptionEditText.setText("");
-        EmailEditText.setText("");
         browseImageView.setImageResource(0);
     }
 
