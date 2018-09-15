@@ -14,4 +14,11 @@
         android:title="My Issues"
         app:showAsAction="ifRoom"
         />
+    <item
+        android:id="@+id/dev_info"
+        android:orderInCategory="99"
+        android:icon="@drawable/baseline_info_white_18"
+        android:title="Info"
+        app:showAsAction="ifRoom"
+        />
 </menu>

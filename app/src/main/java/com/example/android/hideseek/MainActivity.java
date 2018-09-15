@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.hideseek.AccountActivity.LoginActivity;
@@ -43,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
         detailsList = new ArrayList<>();
         auth = FirebaseAuth.getInstance();
         Toast.makeText(getApplicationContext(), "Logged In as " + auth.getCurrentUser().getEmail(), Toast.LENGTH_SHORT).show();
+
+        TextView empty_case = findViewById(android.R.id.empty);
+        listViewLostFound.setEmptyView(empty_case);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -118,7 +122,11 @@ public class MainActivity extends AppCompatActivity {
         } else if (id == R.id.my_issues) {
             Intent intent = new Intent(MainActivity.this, Personal_Activity.class);
             startActivity(intent);
+        } else if (id==R.id.dev_info){
+            Intent intent = new Intent(MainActivity.this,InfoActivity.class);
+            startActivity(intent);
         }
+
 
         return super.onOptionsItemSelected(item);
     }

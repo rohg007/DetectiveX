@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,6 +38,9 @@ public class Personal_Activity extends AppCompatActivity {
         listViewLostFound = findViewById(R.id.list_view_lost_found);
         detailsList = new ArrayList<>();
         auth = FirebaseAuth.getInstance();
+
+        TextView empty_case = findViewById(android.R.id.empty);
+        listViewLostFound.setEmptyView(empty_case);
 
         listViewLostFound.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

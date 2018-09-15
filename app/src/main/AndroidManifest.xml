@@ -12,8 +12,7 @@
         <activity
             android:name=".MainActivity"
             android:label="DetectiveX"
-            android:theme="@style/AppTheme"></activity>
-
+            android:theme="@style/AppTheme" />
         <activity android:name=".AccountActivity.SignupActivity" />
         <activity android:name=".AccountActivity.ResetPasswordActivity" />
         <activity android:name=".AccountActivity.LoginActivity" />
@@ -31,10 +30,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Personal_Activity"
-            android:label="My Issues">
+        <activity
+            android:name=".Personal_Activity"
+            android:label="My Issues"></activity>
+        <activity android:name=".InfoActivity"></activity>
 
-        </activity>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
