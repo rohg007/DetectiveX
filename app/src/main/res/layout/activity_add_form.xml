@@ -6,6 +6,22 @@
     android:orientation="vertical"
     tools:context=".AddForm">
 
+    <android.support.design.widget.NavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Lost/Found"
+            android:textColor="@color/white"
+            android:layout_margin="16dp"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+    </android.support.design.widget.NavigationView>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

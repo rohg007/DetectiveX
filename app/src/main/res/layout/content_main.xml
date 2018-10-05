@@ -23,8 +23,8 @@
         android:id="@android:id/empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:text="You have not listed any issue till now."
         android:gravity="center"
-        android:text="No issues right now"
-        android:textSize="16sp" />
+        android:textSize="16sp"/>
 
 </LinearLayout>

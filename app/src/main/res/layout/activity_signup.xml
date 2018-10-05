@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/white"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="@dimen/activity_horizontal_margin">
@@ -21,8 +21,17 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
             android:contentDescription=""
-            android:src="@drawable/logo123"
+            android:src="@drawable/glass_logo"
             tools:ignore="ContentDescription" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="* Use only your LNMIIT ID for Sign Up">
+
+        </TextView>
 
 
         <EditText
@@ -32,7 +41,8 @@
             android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:maxLines="1"
-            android:textColor="@android:color/white" />
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHint="@color/colorPrimaryDark"/>
 
 
         <EditText
@@ -41,11 +51,11 @@
             android:layout_height="wrap_content"
             android:focusableInTouchMode="true"
             android:hint="@string/hint_password"
-            android:imeActionId="@+id/login"
             android:imeOptions="actionUnspecified"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:textColor="@android:color/white" />
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHint="@color/colorPrimaryDark" />
 
 
         <Button

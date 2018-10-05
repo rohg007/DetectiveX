@@ -27,10 +27,11 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    ListView listViewLostFound;
+    public ListView listViewLostFound;
     DatabaseReference databaseReference;
-    List<Details> detailsList;
+    public List<Details> detailsList;
     FirebaseAuth auth;
+    String lfStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         Toast.makeText(getApplicationContext(), "Logged In as " + auth.getCurrentUser().getEmail(), Toast.LENGTH_SHORT).show();
 
+        //If the list view is empty
         TextView empty_case = findViewById(android.R.id.empty);
         listViewLostFound.setEmptyView(empty_case);
 
@@ -81,12 +83,18 @@ public class MainActivity extends AppCompatActivity {
                 //Data Snapshot to get the data from Firebase Database
                 for (DataSnapshot lostFoundSnapshot : dataSnapshot.getChildren()) {
                     Details details = lostFoundSnapshot.getValue(Details.class);
-                    if (details.getmVisibililty().equals("YES"))
+                    if (details.getmVisibililty().equals("YES")) {
                         detailsList.add(details);
+                        lfStatus="Lost";
+                    }
+                    else if(details.getmVisibililty().equals("YES")) {
+                        detailsList.add(details);
+                        lfStatus="Found";
+                    }
                 }
                 //Sets the adapter to Details Adapter for our custom list
-                DetailsAdapter detailsAdapter = new DetailsAdapter(MainActivity.this, detailsList);
-                listViewLostFound.setAdapter(detailsAdapter);
+                    DetailsAdapter detailsAdapter = new DetailsAdapter(MainActivity.this, detailsList);
+                    listViewLostFound.setAdapter(detailsAdapter);
             }
 
             @Override
@@ -95,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

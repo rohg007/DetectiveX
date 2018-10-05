@@ -69,6 +69,8 @@ public class AddForm extends AppCompatActivity {
         storageReference = FirebaseStorage.getInstance().getReference("LostFoundDetails");
 
         EmailEditText.setText(auth.getCurrentUser().getEmail());
+        String email = auth.getCurrentUser().getEmail();
+        final String domain = email.substring(email.indexOf('@')+1);
 
         //When Upload Button is clicked
         UploadImageButton.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +90,10 @@ public class AddForm extends AppCompatActivity {
         SubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addDetailsToFirebase();
+                if(domain.equals("lnmiit.ac.in"))
+                    addDetailsToFirebase();
+                else
+                    Toast.makeText(getApplicationContext(),"You're not logged in with LNMIIT domain\n Please login or signup using LNMIIT Id",Toast.LENGTH_LONG).show();
             }
         });
         //When Create Mail Button is clicked

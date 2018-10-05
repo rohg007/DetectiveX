@@ -17,7 +17,7 @@
     <item
         android:id="@+id/dev_info"
         android:orderInCategory="99"
-        android:icon="@drawable/baseline_info_white_18"
+        android:icon="@drawable/ic_info_outline_black_24dp"
         android:title="Info"
         app:showAsAction="ifRoom"
         />
