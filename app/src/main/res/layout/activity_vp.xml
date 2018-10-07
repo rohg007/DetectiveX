@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Personal_Activity">
+    tools:context=".VPActivity"
+    android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -18,9 +18,8 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title=" Your Issues"
-            app:logo="@drawable/ic_face_black_24dp"
-            />
+            app:title="Vice-President's Arena"
+            app:logo="@drawable/ic_vp"/>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -38,7 +37,7 @@
         android:id="@android:id/empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="You have not listed any issue till now."
+        android:text="Nothing to approve"
         android:gravity="center"
         android:textSize="16sp"/>
 

@@ -36,5 +36,7 @@
     <string name="about_detectivex">DetectiveX a single platform where user can list, resolve, and participate in the lost and found activities of the college significantly reducing the number of spams associated with Lost and Found.</string>
     <string name="contact_shubham">Shubham Buccha: +918302098279</string>
     <string name="contact_rohan">Rohan Gupta: +919829661751</string>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
 
 </resources>

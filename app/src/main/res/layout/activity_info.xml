@@ -50,7 +50,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/rohan_gupta" />
+        android:id="@+id/rohan"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -73,7 +74,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="50dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/shubham_buccha" />
+                android:id="@+id/shubham"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -111,7 +113,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="25dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/divyansh_singh" />
+                android:id="@+id/divyansh"/>
 
             <TextView
                 android:layout_width="wrap_content"

@@ -17,6 +17,8 @@ public class Details implements Parcelable {
     private String mId;
     private String mImageUrl;
     private String mVisibililty;
+    private String mResolved;
+    private String mApproved;
 
     //Empty because defining a custom constructor
     public Details() {
@@ -33,7 +35,7 @@ public class Details implements Parcelable {
         this.mEmail = email;
     }
 
-    public Details(String Id, String lostFound, String name, String contactNumber, String objectType, String description, String email, String visibility) {
+    public Details(String Id, String lostFound, String name, String contactNumber, String objectType, String description, String email, String visibility, String resolved, String approved) {
         this.mId = Id;
         this.LostFound = lostFound;
         this.mName = name;
@@ -41,10 +43,12 @@ public class Details implements Parcelable {
         this.mObjectType = objectType;
         this.mDescription = description;
         this.mEmail = email;
-        this.setmVisibililty(visibility);
+        this.mVisibililty=visibility;
+        this.mResolved=resolved;
+        this.setmApproved(approved);
     }
 
-    public Details(String Id, String lostFound, String name, String contactNumber, String objectType, String description, String email, String imageUrl, String visibility) {
+    public Details(String Id, String lostFound, String name, String contactNumber, String objectType, String description, String email, String imageUrl, String visibility,String resolved,String approved) {
         this.mId = Id;
         this.LostFound = lostFound;
         this.mName = name;
@@ -53,7 +57,9 @@ public class Details implements Parcelable {
         this.mDescription = description;
         this.mEmail = email;
         this.mImageUrl = imageUrl;
-        this.setmVisibililty(visibility);
+        this.mVisibililty=visibility;
+        this.mResolved=resolved;
+        this.setmApproved(approved);
     }
 
 
@@ -66,7 +72,9 @@ public class Details implements Parcelable {
         mEmail = in.readString();
         mId = in.readString();
         mImageUrl = in.readString();
-        setmVisibililty(in.readString());
+        mVisibililty=in.readString();
+        mResolved=in.readString();
+        setmApproved(in.readString());
     }
 
     @Override
@@ -79,7 +87,9 @@ public class Details implements Parcelable {
         dest.writeString(mEmail);
         dest.writeString(mId);
         dest.writeString(mImageUrl);
-        dest.writeString(getmVisibililty());
+        dest.writeString(mVisibililty);
+        dest.writeString(mResolved);
+        dest.writeString(getmApproved());
     }
 
     @Override
@@ -174,5 +184,21 @@ public class Details implements Parcelable {
 
     public void setmVisibililty(String mVisibililty) {
         this.mVisibililty = mVisibililty;
+    }
+
+    public String getmResolved() {
+        return mResolved;
+    }
+
+    public void setmResolved(String mResolved) {
+        this.mResolved = mResolved;
+    }
+
+    public String getmApproved() {
+        return mApproved;
+    }
+
+    public void setmApproved(String mApproved) {
+        this.mApproved = mApproved;
     }
 }

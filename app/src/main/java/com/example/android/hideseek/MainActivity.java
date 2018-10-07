@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     public List<Details> detailsList;
     FirebaseAuth auth;
     String lfStatus;
+    public static final int activity = 1001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        String vpEmail = "gym.vicepresident@lnmiit.ac.in";
         databaseReference = FirebaseDatabase.getInstance().getReference("LostFoundDetails");
         listViewLostFound = findViewById(R.id.list_view_lost_found);
         detailsList = new ArrayList<>();
@@ -60,6 +62,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        FloatingActionButton vpFab = findViewById(R.id.vp_fab);
+        if(auth.getCurrentUser().getEmail().equals(vpEmail))
+            vpFab.setVisibility(View.VISIBLE);
+
+        vpFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,VPActivity.class);
+                startActivity(intent);
+            }
+        });
+
         listViewLostFound.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -67,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 Details currDetails = detailsList.get(position);
                 Intent intent = new Intent(MainActivity.this, IssueDescription.class);
                 intent.putExtra("DETAILS", currDetails);
+                intent.putExtra("calling-activity",activity);
                 startActivity(intent);
             }
         });
@@ -83,14 +98,8 @@ public class MainActivity extends AppCompatActivity {
                 //Data Snapshot to get the data from Firebase Database
                 for (DataSnapshot lostFoundSnapshot : dataSnapshot.getChildren()) {
                     Details details = lostFoundSnapshot.getValue(Details.class);
-                    if (details.getmVisibililty().equals("YES")) {
+                    if (details.getmVisibililty().equals("YES"))
                         detailsList.add(details);
-                        lfStatus="Lost";
-                    }
-                    else if(details.getmVisibililty().equals("YES")) {
-                        detailsList.add(details);
-                        lfStatus="Found";
-                    }
                 }
                 //Sets the adapter to Details Adapter for our custom list
                     DetailsAdapter detailsAdapter = new DetailsAdapter(MainActivity.this, detailsList);

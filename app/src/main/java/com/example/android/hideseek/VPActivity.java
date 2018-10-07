@@ -3,9 +3,9 @@ package com.example.android.hideseek;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,19 +20,18 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Personal_Activity extends AppCompatActivity {
+public class VPActivity extends AppCompatActivity {
 
     ListView listViewLostFound;
     DatabaseReference databaseReference;
     List<Details> detailsList;
     FirebaseAuth auth;
-    public static final int activity = 1002;
+    public static final int activity = 1003;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_personal_);
-
+        setContentView(R.layout.activity_vp);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("LostFoundDetails");
         listViewLostFound = findViewById(R.id.list_view_lost_found);
@@ -47,7 +46,7 @@ public class Personal_Activity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //Gets the current position on List View and sends an intent to open Description Activity
                 Details currDetails = detailsList.get(position);
-                Intent intent = new Intent(Personal_Activity.this, IssueDescription.class);
+                Intent intent = new Intent(VPActivity.this, IssueDescription.class);
                 intent.putExtra("DETAILS", currDetails);
                 intent.putExtra("calling-activity",activity);
                 startActivity(intent);
@@ -55,7 +54,6 @@ public class Personal_Activity extends AppCompatActivity {
         });
         getData();
     }
-
     private void getData() {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -64,12 +62,11 @@ public class Personal_Activity extends AppCompatActivity {
                 //Data Snapshot to get the data from Firebase Database
                 for (DataSnapshot lostFoundSnapshot : dataSnapshot.getChildren()) {
                     Details details = lostFoundSnapshot.getValue(Details.class);
-                    if (details.getmEmail().equals(auth.getCurrentUser().getEmail())) {
+                    if(details.getmApproved().equals("NO"))
                         detailsList.add(details);
-                    }
                 }
                 //Sets the adapter to Details Adapter for our custom list
-                DetailsAdapter detailsAdapter = new DetailsAdapter(Personal_Activity.this, detailsList);
+                DetailsAdapter detailsAdapter = new DetailsAdapter(VPActivity.this, detailsList);
                 listViewLostFound.setAdapter(detailsAdapter);
             }
 

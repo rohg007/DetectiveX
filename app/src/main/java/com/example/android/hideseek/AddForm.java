@@ -1,7 +1,9 @@
 package com.example.android.hideseek;
 
+import android.annotation.TargetApi;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -17,6 +19,7 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -34,6 +37,7 @@ public class AddForm extends AppCompatActivity {
     private EditText NameEditText, ContactNumberEditText, EmailEditText, ObjectTypeEditText, DescriptionEditText;
     private DatabaseReference databaseReference;
     private static final int PICK_IMAGE_REQUEST = 2;
+    private static final int REQUEST_CODE = 500;
     private ImageView browseImageView;
     private Uri mImageUri;
     private StorageReference storageReference;
@@ -45,6 +49,7 @@ public class AddForm extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_form);
+
 
         //findViewByIding the elements
 
@@ -136,7 +141,7 @@ public class AddForm extends AppCompatActivity {
             if (!TextUtils.isEmpty(getDetails().getmName()) && !TextUtils.isEmpty(getDetails().getmContactNumber()) && !TextUtils.isEmpty(getDetails().getmDescription()) && !TextUtils.isEmpty(getDetails().getmObjectType()) && !TextUtils.isEmpty(getDetails().getmEmail()) && !TextUtils.isEmpty(getDetails().getmDescription()) && browseImageView.getDrawable() == null) {
                 //Storing the Id
                 String id = databaseReference.push().getKey();
-                Details details1 = new Details(id, getDetails().getLostFound(), getDetails().getmName(), getDetails().getmContactNumber(), getDetails().getmObjectType(), getDetails().getmDescription(), getDetails().getmEmail(), "YES");
+                Details details1 = new Details(id, getDetails().getLostFound(), getDetails().getmName(), getDetails().getmContactNumber(), getDetails().getmObjectType(), getDetails().getmDescription(), getDetails().getmEmail(), "NO","NO","NO");
                 //Now saving the details in Real time Database under id node
                 databaseReference.child(id).setValue(details1);
                 //if task is successful display toast message
@@ -144,7 +149,7 @@ public class AddForm extends AppCompatActivity {
             } else if (!TextUtils.isEmpty(getDetails().getmName()) && !TextUtils.isEmpty(getDetails().getmContactNumber()) && !TextUtils.isEmpty(getDetails().getmDescription()) && !TextUtils.isEmpty(getDetails().getmObjectType()) && !TextUtils.isEmpty(getDetails().getmEmail()) && !TextUtils.isEmpty(getDetails().getmDescription()) && browseImageView.getDrawable() != null) {
                 //Storing the Id
                 String id = databaseReference.push().getKey();
-                Details details1 = new Details(id, getDetails().getLostFound(), getDetails().getmName(), getDetails().getmContactNumber(), getDetails().getmObjectType(), getDetails().getmDescription(), getDetails().getmEmail(), imageUrl, "YES");
+                Details details1 = new Details(id, getDetails().getLostFound(), getDetails().getmName(), getDetails().getmContactNumber(), getDetails().getmObjectType(), getDetails().getmDescription(), getDetails().getmEmail(), imageUrl, "NO","NO","NO");
                 //Now saving the details in Real time Database under id node
                 databaseReference.child(id).setValue(details1);
                 //if task is successful display toast message
@@ -276,4 +281,3 @@ public class AddForm extends AppCompatActivity {
         }
     }
 }
-//
